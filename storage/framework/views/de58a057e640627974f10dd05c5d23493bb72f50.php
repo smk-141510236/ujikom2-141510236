@@ -33,7 +33,7 @@
                                    <select name="permision" class="col-md-12 form-control">
                                        <option>Admin</option>
                                        <option>HRD</option>
-                                       <option>Bagian Administrasi</option>
+                                       <option>Administrasi</option>
                                        <option>Pegawai</option>
                                    </select>
                             </div>

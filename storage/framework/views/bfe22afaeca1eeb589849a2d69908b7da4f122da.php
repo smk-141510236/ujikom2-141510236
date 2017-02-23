@@ -3,17 +3,18 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">buat lembur pegawai </div>
+                <div class="panel-heading">Lembur Pegawai </div>
                 <div class="panel-body">
 
 
                      <?php echo Form::open(['url' => 'lembur_pegawai']); ?>
 
-                    <div class="form-group">
+                        <div class="form-group">
                         <?php echo Form::label('kode lembur ', 'kode lembur'); ?>
 
                         <?php echo Form::text('kode_lembur_id',null,['class'=>'form-control','required']); ?>
 
+                        </div>
 
                         <div class="col-md-6">
                         <?php echo Form::label('Nip Dan Nama Pegawai ', 'Nip Dan Nama Pegawai '); ?>

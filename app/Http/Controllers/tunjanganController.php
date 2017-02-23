@@ -13,6 +13,11 @@ class tunjanganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('Administrasi');
+    }
+
     public function index()
     {
         $tunjangan=tunjanganModel::all();
@@ -68,10 +73,10 @@ class tunjanganController extends Controller
       public function edit($id)
     {
         //
-        $jabatan= jabatanModel::all();
         $golongan=golonganModel::all();
-        $tunjangan=tunjanganModel::all();
-        return view('tunjangan.edit',compact('tunjangan','jabatan','golongan'));
+        $jabatan=jabatanModel::all();
+        $tunjangan=tunjanganModel::find($id);
+        return view('tunjangan.edit',compact('tunjangan','golongan','jabatan'));
     }
 
     /**

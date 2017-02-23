@@ -15,6 +15,11 @@ class kategori_lemburController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   public function __construct()
+    {
+        $this->middleware('Admin');
+    }
+
     public function index()
     {
         $kategori_lembur=kategori_lemburModel::paginate(10);

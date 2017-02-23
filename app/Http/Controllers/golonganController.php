@@ -12,6 +12,13 @@ class golonganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('HRD');
+    }
+
+
+
     public function index()
     {
         $golongan=golonganModel::paginate(10);
@@ -45,11 +52,11 @@ class golonganController extends Controller
                    'besaran_uang'=>'required|numeric|min:0'];
 
 
-        $sms=['kode_golongan.required'=>'tidak boleh kosong',
-               'kode_golongan.unique'=>'data tidak boleh sama',
-               'nama_golongan.required'=>'tidak boleh kosong',
-               'besaran_uang.required'=>'tidak boleh kosong',
-               'besaran_uang.numeric'=>'input angka',
+        $sms=['kode_golongan.required'=>'Tidak Boleh Kosong',
+               'kode_golongan.unique'=>'Data Tidak Boleh Sama',
+               'nama_golongan.required'=>'Tidak Boleh Kosong',
+               'besaran_uang.required'=>'Tidak Boleh Kosong',
+               'besaran_uang.numeric'=>'Input Angka',
                'besaran_uang.min'=>'min 0',
 
         ];

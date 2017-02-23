@@ -10,7 +10,7 @@
                      <?php echo Form::open(['url' => 'golongan']); ?>
 
                     <div class="col-md-6">
-                        <?php echo Form::label('kode golongan', 'kode golongan'); ?>
+                        <?php echo Form::label('Kode Golongan', 'Kode Golongan'); ?>
 
                         <?php echo Form::text('kode_golongan',null,['class'=>'form-control']); ?>
 
@@ -34,7 +34,7 @@
                                 <?php endif; ?>
                     </div>
                     <div class="col-md-12">
-                        <?php echo Form::label('besaran uang', 'besaran uang'); ?>
+                        <?php echo Form::label('Besaran uang', 'Besaran uang'); ?>
 
                         <?php echo Form::text('besaran_uang',null,['class'=>'form-control']); ?>
 

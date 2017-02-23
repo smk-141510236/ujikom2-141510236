@@ -21,5 +21,7 @@ class HRD
         elseif (auth()->check() && $request->user()->permision == 'HRD') {
             return $next($request);
         }
+        return redirect()->guest('/');
+
     }
 }

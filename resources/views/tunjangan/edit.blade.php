@@ -1,113 +1,88 @@
-<h1>Edit Tunjangan</h1>
-    <div class="container">
+@extends('layouts/app')
+@section('content')
+<div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Edit Tunjangan</div>
+                <div class="panel-heading"><h1>Edit Jabatan</h1></div>
                 <div class="panel-body">
-                    {!! Form::model($tunjangan,['method'=>'PATCH','route'=>['tunjangan.update',$tunjangan->id]])!!}
-                        {!! Form::hidden('id',null,['class'=>'form-control']) !!}
-                        <div class="form-group{{ $errors->has('kode_tunjangan') ? ' has-error' : '' }}">
-                            <label for="kode_tunjangan" class="col-md-4 control-label">Kode Tunjangan</label>
+                     {!! Form::model($tunjangan,['method'=>'PATCH','route'=>['tunjangan.update',$tunjangan->id]])!!}
+                    
+                    <div class="col-md-6">
+                         <label for="kode_tunjangan" >Kode Tunjangan</label>
+                         <input id="kode_tunjangan" value="{{$tunjangan->kode_tunjangan}}" type="text" class="form-control" name="kode_tunjangan" autofocus>
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('kode_tunjangan') }}</strong>
+                                    </span>
+                    </div>
+                    <div class="col-md-6">
+                                <label>Jabatan Lama</label>
+                                @foreach($jabatan as $datajabatan)
+                                    @if($datajabatan->id == $tunjangan->jabatan_id)
+                                    <input type="text" class ="form-control" value="{{$datajabatan->nama_jabatan}}" readonly>
+                                    @endif
+                                @endforeach
+                   </div>
 
-                            <div class="col-md-6">
-                                {!! Form::text('kode_tunjangan',null,['class'=>'form-control']) !!}
-                                @if ($errors->has('kode_tunjangan'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('kode_tunjangan') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                            <div class="col-md-6">
+                                <label>Golongan Lama</label>
+                                @foreach($golongan as $datagolongan)
+                                    @if($datagolongan->id == $tunjangan->golongan_id)
+                                    <input type="text" class ="form-control" value="{{$datagolongan->nama_golongan}}" readonly>
+                                    @endif
+                                @endforeach
+                            </div>
 
-                        <div class="form-group{{ $errors->has('golongan_id') ? ' has-error' : '' }}">
-                            <label for="golongan_id" class="col-md-4 control-label">Nama Golongan</label>
+                            <div class="col-md-6">
+                                <label for="Jabatan">Jabatan</label>
+                                    <select class="col-md-8 form-control" name="jabatan_id">
+                                    <option>Pilih Jabatan Baru</option>
+                                        @foreach($jabatan as $datajabatan)
+                                            <option  value="{{$datajabatan->id}}" >{{$datajabatan->nama_jabatan}}</option>
+                                        @endforeach
+                                    </select>
+                                    <span>{{$errors->first('jabatan_id')}}</span>
+                            </div>
 
-                            <div class="col-md-6">
-                                <select name="golongan_id" class="form-control">
-                                    <option value="">pilih</option>
-                                    @foreach($golongan as $data)
-                                    <option value="{{$data->id}}">{{$data->nama_golongan}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="col-md-6">
+                                <label for="Jabatan">Golongan</label>
+                                    <select class="col-md-8 form-control" name="golongan_id">
+                                    <option>Pilih Golongan Baru</option>
+                                        @foreach($golongan as $datagolongan)
+                                            <option  value="{{$datagolongan->id}}" >{{$datagolongan->nama_golongan}}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="help-block">
+                                        {{$errors->first('golongan_id')}}
+                                    </span>
+                            </div>
 
-                                @if ($errors->has('golongan_id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('golongan_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                         <div class="form-group{{ $errors->has('jabatan_id') ? ' has-error' : '' }}">
-                            <label for="jabatan_id" class="col-md-4 control-label">Nama Jabatan</label>
-
-                            <div class="col-md-6">
-                                <select name="jabatan_id" class="form-control">
-                                    <option value="">pilih</option>
-                                    @foreach($jabatan as $data)
-                                    <option value="{{$data->id}}">{{$data->nama_jabatan}}</option>
-                                    @endforeach
-                                </select>
-
-                                @if ($errors->has('jabatan_id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('jabatan_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                            <label for="status" class="col-md-4 control-label">Status</label>
-
-                            <div class="col-md-6">
-                                <select name="status" class="form-control">
-                                    <option value="">Pilih</option>
-                                    <option value="Belum Menikah">Belum Menikah</option>
-                                    <option value="Menikah">Menikah</option>
-                                </select>
-                                @if ($errors->has('status'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('status') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('jumlah_anak') ? ' has-error' : '' }}">
-                            <label for="jumlah_anak" class="col-md-4 control-label">Jumlah Anak</label>
-
-                            <div class="col-md-6">
-                                {!! Form::text('jumlah_anak',null,['class'=>'form-control']) !!}
-                                @if ($errors->has('jumlah_anak'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('jumlah_anak') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('besar_uang') ? ' has-error' : '' }}">
-                            <label for="besar_uang" class="col-md-4 control-label">Besar Uang</label>
-
-                            <div class="col-md-6">
-                                {!! Form::text('besar_uang',null,['class'=>'form-control']) !!}
-                                @if ($errors->has('besar_uang'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('besar_uang') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group">
-                        {!! Form::submit('Save',['class'=>'btn btn-primary form-control']) !!}
+                    
+                                
+                    <div class="col-md-6">
+                        <label for="status">status</label>
+                        <select class="col-md-8 form-control" name="status">
+                        <option name="status">menikah</option>
+                        <option name="status">belum menikah</option>
+                        </select>
                     </div>
-                {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                            
 
+                    <div class="col-md-6">
+                        {!! Form::label('jumlah anak', 'jumlah anak') !!}
+                        {!! Form::text('jumlah_anak',null,['class'=>'form-control','required']) !!}
+                    </div>
+                    <div class="col-md-12">
+                        {!! Form::label('besaran uang', 'besaran uang') !!}
+                        {!! Form::text('besaran_uang',null,['class'=>'form-control','required']) !!}
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        {!! Form::submit('SAVE', ['class' => 'btn btn-primary form-control']) !!}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

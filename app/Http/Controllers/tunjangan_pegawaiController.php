@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\tunjangan_pegawaiModel;
 use App\pegawaiModel;
 use App\tunjanganModel;
+use App\jabatanModel;
 use Request;
 
 class tunjangan_pegawaiController extends Controller
@@ -13,6 +14,12 @@ class tunjangan_pegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('Administrasi');
+    }
+
+
     public function index()
     {
         $tunjangan_pegawai=tunjangan_pegawaiModel::all();
@@ -67,9 +74,10 @@ class tunjangan_pegawaiController extends Controller
     public function edit($id)
     {
         //
-        $tunjangan= tunjanganModel::all();
-        $pegawai= pegawaiModel::all();
-        $tunjangan_pegawai=tunjangan_pegawaiModel::all();
+        $tunjangan=tunjanganModel::all();
+        $pegawai=pegawaiModel::all();
+        $jabatan=jabatanModel::all();
+        $tunjangan_pegawai=tunjangan_pegawaiModel::find($id);
         return view('tunjangan_pegawai.edit',compact('tunjangan_pegawai','tunjangan','pegawai'));
     }
 

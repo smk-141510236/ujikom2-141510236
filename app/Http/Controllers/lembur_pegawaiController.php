@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\lembur_pegawaiModel;
 use App\pegawaiModel;
+use App\golonganModel;
+use App\jabatanModel;
 use Request;
 
 class lembur_pegawaiController extends Controller
@@ -12,6 +14,12 @@ class lembur_pegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('Admin');
+    }
+
+    
     public function index()
     {
         $lembur_pegawai=lembur_pegawaiModel::all();
@@ -64,8 +72,11 @@ class lembur_pegawaiController extends Controller
     public function edit($id)
     {
         //
+        $pegawai=pegawaiModel::all();
+        $jabatan=jabatanModel::all();
+        $golongan=golonganModel::all();
         $lembur_pegawai=lembur_pegawaiModel::all();
-        return view('lembur_pegawai.edit',compact('lembur_pegawai'));
+        return view('lembur_pegawai.edit',compact('lembur_pegawai','pegawai','jabatan','golongan'));
     }
 
     /**
