@@ -75,7 +75,7 @@ class lembur_pegawaiController extends Controller
         $pegawai=pegawaiModel::all();
         $jabatan=jabatanModel::all();
         $golongan=golonganModel::all();
-        $lembur_pegawai=lembur_pegawaiModel::all();
+        $lembur_pegawai=lembur_pegawaiModel::find($id);
         return view('lembur_pegawai.edit',compact('lembur_pegawai','pegawai','jabatan','golongan'));
     }
 

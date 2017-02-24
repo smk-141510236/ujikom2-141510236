@@ -9,10 +9,10 @@
 
             
         <div class="col-md-6">
-          <label for="kode_lembur" >Kode Lembur</label>
-          <input id="kode_lembur" value="<?php echo e($lembur_pegawai->kode_lembur); ?>" type="text" class="form-control" name="kode_lembur" autofocus>
+          <label for="kode_lembur_id" >Kode Lembur</label>
+          <input id="kode_lembur_id" value="<?php echo e($lembur_pegawai->kode_lembur_id); ?>" type="text" class="form-control" name="kode_lembur_id" autofocus>
              <span class="help-block">
-               <strong><?php echo e($errors->first('kode_lembur')); ?></strong>
+               <strong><?php echo e($errors->first('kode_lembur_id')); ?></strong>
              </span>
         </div>
 
@@ -28,4 +28,25 @@
                         </select>  
           <span><?php echo e($errors->first('jabatan_id')); ?></span>
         </div>
+
+        <div class="col-md-6">
+          <label for="jumlah_jam" >Jumlah Jam </label>
+          <input id="jumlah_jam" value="<?php echo e($lembur_pegawai->jumlah_jam); ?>" type="text" class="form-control" name="jumlah_jam" autofocus>
+             <span class="help-block">
+               <strong><?php echo e($errors->first('jumlah_jam')); ?></strong>
+             </span>
+        </div>
+
+                <div class="col-md-12">
+                        <?php echo Form::submit('SAVE', ['class' => 'btn btn-primary form-control']); ?>
+
+                    </div>
+                    <?php echo Form::close(); ?>
+
+</div>
+    </div>
+        </div>
+            </div>
+                </div>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts/app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

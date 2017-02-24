@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Lembur Pegawai </div>
+                <div class="panel-heading">Tambah Lembur Pegawai </div>
                 <div class="panel-body">
 
 
@@ -14,21 +14,18 @@
 
                         <?php echo Form::text('kode_lembur_id',null,['class'=>'form-control','required']); ?>
 
-                        </div>
 
-                        <div class="col-md-6">
-                        <?php echo Form::label('Nip Dan Nama Pegawai ', 'Nip Dan Nama Pegawai '); ?>
+                    <div class="col-md-6">
+                    <?php echo Form::label('Nip Dan Nama Pegawai ', 'Nip Dan Nama Pegawai '); ?>
 
-                                    <select class="col-md-12 form-control" name="pegawai_id">
-                                        <?php $__currentLoopData = $pegawai; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pegawais): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                            <option  value="<?php echo e($pegawais->id); ?>" >
-                                            <?php echo e($pegawais->nip); ?> <?php echo e($pegawais->User->name); ?>
+                        <select class="col-md-12 form-control" name="pegawai_id">
+                            <?php $__currentLoopData = $pegawai; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pegawais): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <option  value="<?php echo e($pegawais->id); ?>" >
+                                <?php echo e($pegawais->nip); ?> <?php echo e($pegawais->User->name); ?>
 
-                                                </option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                    </select>
-
-                                    
+                            </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                        </select>            
                                 
                     <div class="form-group">
                         <?php echo Form::label('jumlah jam', 'jumlah jam'); ?>

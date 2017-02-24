@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h1>Jabatan</h1></div>
+                <div class="panel-heading"><h1>Tambah Jabatan</h1></div>
                 <div class="panel-body">
 
                      {!! Form::open(['url' => 'jabatan']) !!}

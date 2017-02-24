@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\penggajianModel;
 use App\pegawaiModel;
 use App\lembur_pegawaiModel;
@@ -11,7 +13,7 @@ use App\tunjangan_pegawaiModel;
 use App\golonganModel;
 use App\jabatanModel;
 use App\kategori_lemburModel;
-use App\tunjangan;
+use App\tunjanganModel;
 use App\User;
 use Input;
 use Validator;
@@ -39,7 +41,8 @@ class penggajianController extends Controller
      */
     public function create()
     {
-        $tunjangan_pegawai::all();
+        $tunjangan= tunjanganModel::all();
+        $tunjangan_pegawai= tunjangan_pegawaiModel::all();
         $user=User::all();
         return view('penggajian.create', compact('tunjangan_pegawai','user'));
     }
@@ -55,8 +58,19 @@ class penggajianController extends Controller
         //
         $gaji = Input::all();
         $tunjangan_pegawai = tunjangan_pegawaiModel::where('id', $gaji['kode_tunjangan_id'])->first();
+
         $tunjangan = tunjanganModel::where('id', $tunjangan_pegawai->kode_tunjangan)->first();
+        
+        $pegawai = pegawaiModel::where('id', $tunjangan_pegawai->pegawai_id)->first();
+        
+        $kategori_lembur = kategori_lemburModel::where('jabatan_id', $pegawai->jabatan_id)->where('golongan_id', $pegawai->golongan_id)->first();
+        
+        $lembur_pegawai = lembur_pegawaiModel::where('pegawai_id', $pegawai->id)->first();
+        
+        $jabatan = jabatanModel::where('id', $pegawai->jabatan_id)->first();
+        
         $golongan = golonganModel::where('id', $pegawai->golongan_id)->first();
+        
         $data_penggajian = penggajianModel::where('kode_tunjangan_id', $tunjangan_pegawai->id)->first();
 
         $penggajian = new penggajianModel;
@@ -66,6 +80,7 @@ class penggajianController extends Controller
             $tunjangan = tunjangan_pegawaiModel::paginate(5);
             return view('penggajian.create', compact('error','tunjangan'));
         }
+        
         elseif (!isset($lembur_pegawai)) 
         {
             $nol = 0;
@@ -79,6 +94,7 @@ class penggajianController extends Controller
             $penggajian->petugas_penerima = Auth::User()->name;
             $penggajian->save();
         }
+        
         elseif (!isset($lembur_pegawai) || isset($kategori_lembur)) 
         {
             $nol = 0;
@@ -92,6 +108,7 @@ class penggajianController extends Controller
             $penggajian->petugas_penerima = Auth::User()->name;
             $penggajian->save();
         }
+        
         else
         {
             $nol = 0;

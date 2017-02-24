@@ -62,9 +62,11 @@
                                 
                     <div class="col-md-6">
                         <label for="status">status</label>
-                        <select class="col-md-8 form-control" name="status">
-                        <option name="status">menikah</option>
-                        <option name="status">belum menikah</option>
+                        <select class="col-md-8 form-control">
+                        <option value="menikah">Menikah</option>
+                        <option value="belum_menikah">Belum Menikah</option>
+                        <option value="janda">Janda</option>
+                        <option value="duda">Duda</option>
                         </select>
                     </div>
                             
