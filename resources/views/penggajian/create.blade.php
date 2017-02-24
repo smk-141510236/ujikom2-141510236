@@ -1,61 +1,59 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="container">
+
+
+  <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Penggajian</div>
                 <div class="panel-body">
-
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/penggajian') }}">
-                        {{ csrf_field() }}
-
-                    <label for="status_pengambilan">Status Pengambilan</label>
-                    <div class="form-group{{$errors->has('status_pengambilan') ? 'has-error' : ''}}">
-                                
-                                <div class="col-md-6">
-                                	<select name="status_pengambilan" class="form-control">
-                                		<option value="0">Belum Diambil</option>
-                                		<option value="1">Sudah Diambil</option>
-                                	</select>
-                                @if ($errors->has('status_pengambilan'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('status_pengambilan') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                    </div>
-                    <label for="kode_tunjangan_id">Pegawai</label>
-                    <div class="form-group{{ $errors->has('kode_tunjangan_id') ? 'has-error' : ''}}">
-
-                        <div class="col-md-8">
-                            <select name="kode_tunjangan_id" class="form-control">
-                                <option value="">Pilih</option>
-                                @foreach($tunjangan_pegawai as $data)
-                                    <option value="{{$data->id}}">{{$data->pegawaiModel->User->name}}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('kode_tunjangan_id'))
-                                <span class="help-block">
-                                  <strong>{{ $errors->first('kode_tunjangan_id')}}</strong>  
-                                </span>
-                            @endif
-                        </div>
-                        <div>
-                            @if(isset($error))
-                            Penggajian Ada
-                            @endif
-                        </div>
-                        
-                            <div class="col-md-12" >
-                                <button type="submit" class="btn btn-primary form-control">Hitung Gaji</button>
-                            </div>
-                                        </div>
-                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <center><h2>Input Penggajian</h2></center>
+                    <br />
+              {!! Form::open(['url' => 'penggajian', 'class' => 'form-horizontal form-label-left']) !!}
+    <div class="form-group">
+        <div class="control-label col-md-3 col-sm-3 col-xs-12">
+            {!! Form::label('Pegawai', 'Pegawai ') !!}
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <select class="form-control col-md-7 col-xs-12" name="kode_tunjangan_id">
+            
+            @foreach($gaji as $data)
+                <option value="{{$data->id}}">{{$data->pegawaiModel->nip}}&nbsp;|&nbsp;{{$data->pegawaiModel->User->name}}</option>
+            @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-3 col-sm-3 col-xs-12">
+            {!! Form::label('Status Pengambilan', 'Status Pengambialn ') !!}
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+             <select name="status_pengambilan" class="form-control">
+                                    <option value="0">Belum Diambil</option>
+                                    <option value="1">Sudah Diambil</option>
+            </select>
+        </div>
+    </div>
+     <div class="col-md-6 col-sm-6 col-xs-12">
+      <span class="help-block">
+            {{$errors->first('kode_tunjangan_id')}}
+          </span>
+                                       <div>
+                                           @if(isset($error))
+                                               Check Lagi Gaji Sudah Ada
+                                           @endif
+                                       </div>
+                               </div>
+       <div class="form-group">
+          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+              {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
+          </div>
+      </div>
+    </div>
+    {!! Form::close() !!}
+          </div>
+          </div>     
+    </div>
 @endsection
