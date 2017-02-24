@@ -3,66 +3,57 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h1>Edit Jabatan</h1></div>
+                <div class="panel-heading"><h1>Edit Tunjangan</h1></div>
                 <div class="panel-body">
                      <?php echo Form::model($tunjangan,['method'=>'PATCH','route'=>['tunjangan.update',$tunjangan->id]]); ?>
 
                     
-                    <div class="col-md-6">
-                         <label for="kode_tunjangan" >Kode Tunjangan</label>
-                         <input id="kode_tunjangan" value="<?php echo e($tunjangan->kode_tunjangan); ?>" type="text" class="form-control" name="kode_tunjangan" autofocus>
+     <div class="col-md-6">
+        <label for="kode_tunjangan" >Kode Tunjangan</label>
+            <input id="kode_tunjangan" value="<?php echo e($tunjangan->kode_tunjangan); ?>" type="text" class="form-control" name="kode_tunjangan" autofocus>
                                     <span class="help-block">
                                         <strong><?php echo e($errors->first('kode_tunjangan')); ?></strong>
                                     </span>
                     </div>
-                    <div class="col-md-6">
-                                <label>Jabatan Lama</label>
-                                <?php $__currentLoopData = $jabatan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datajabatan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    <?php if($datajabatan->id == $tunjangan->jabatan_id): ?>
-                                    <input type="text" class ="form-control" value="<?php echo e($datajabatan->nama_jabatan); ?>" readonly>
-                                    <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                   </div>
-
-                            <div class="col-md-6">
-                                <label>Golongan Lama</label>
-                                <?php $__currentLoopData = $golongan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datagolongan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    <?php if($datagolongan->id == $tunjangan->golongan_id): ?>
-                                    <input type="text" class ="form-control" value="<?php echo e($datagolongan->nama_golongan); ?>" readonly>
-                                    <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="Jabatan">Jabatan</label>
-                                    <select class="col-md-8 form-control" name="jabatan_id">
-                                    <option>Pilih Jabatan Baru</option>
-                                        <?php $__currentLoopData = $jabatan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datajabatan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                            <option  value="<?php echo e($datajabatan->id); ?>" ><?php echo e($datajabatan->nama_jabatan); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                    </select>
-                                    <span><?php echo e($errors->first('jabatan_id')); ?></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="Jabatan">Golongan</label>
-                                    <select class="col-md-8 form-control" name="golongan_id">
-                                    <option>Pilih Golongan Baru</option>
-                                        <?php $__currentLoopData = $golongan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datagolongan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                            <option  value="<?php echo e($datagolongan->id); ?>" ><?php echo e($datagolongan->nama_golongan); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                    </select>
-                                    <span class="help-block">
-                                        <?php echo e($errors->first('golongan_id')); ?>
-
-                                    </span>
-                            </div>
-
                     
-                                
+                
+
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <?php echo Form::label('Jabatan', 'Jabatan:'); ?>
+
+                        <select class="form-control" name="jabatan_id">
+                        <?php $__currentLoopData = $jabatan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datajabatan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <option value='<?php echo $datajabatan->id; ?>'><?php echo $datajabatan->nama_jabatan; ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                            <span class="help-block">
+                                        <strong><?php echo e($errors->first('kode_jabatan')); ?></strong>
+                                    </span>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                     <div class="form-group">
+                        <?php echo Form::label('Golongan', 'Golongan:'); ?>
+
+                        <select class="form-control" name="golongan_id">
+                        <?php $__currentLoopData = $golongan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datagolongan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <option value='<?php echo $datagolongan->id; ?>'><?php echo $datagolongan->nama_golongan; ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                            <span class="help-block">
+                                        <strong><?php echo e($errors->first('kode_golongan')); ?></strong>
+                                    </span>
+                        </select>
+                    </div>
+                    </div>
+                    
                     <div class="col-md-6">
                         <label for="status">status</label>
-                        <select class="col-md-8 form-control">
+                        <select class="form-control" class="col-md-8" form="form-control" name="status">
                         <option value="menikah">Menikah</option>
                         <option value="belum_menikah">Belum Menikah</option>
                         <option value="janda">Janda</option>

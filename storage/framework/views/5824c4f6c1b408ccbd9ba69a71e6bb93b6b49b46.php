@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?php echo Form::label('Kode Guru', 'Kode Guru:'); ?>
+                        <?php echo Form::label('Kode Jabatan', 'Kode Jabatan:'); ?>
 
                         <select class="form-control" name="jabatan_id">
                         <?php $__currentLoopData = $jabatan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jabatans): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>

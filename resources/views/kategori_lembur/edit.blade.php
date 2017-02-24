@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('Kode Guru', 'Kode Guru:') !!}
+                        {!! Form::label('Kode Jabatan', 'Kode Jabatan:') !!}
                         <select class="form-control" name="jabatan_id">
                         @foreach ($jabatan as $jabatans)
                             <option value='{!!$jabatans->id!!}'>{!!$jabatans->nama_jabatan!!}

@@ -8,33 +8,30 @@
                      <?php echo Form::model($tunjangan_pegawai,['method'=>'PATCH','route'=>['tunjangan_pegawai.update',$tunjangan_pegawai->id]]); ?>
 
 
-							<div class="col-md-6">
-                                <label for="Tunjangan">Kode Tunjangan</label>
-                                    <select class="col-md-8 form-control" name="kode_tunjangan">
-                                    <option>Pilih Tunjangan Baru</option>
-                                        <?php $__currentLoopData = $tunjangan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datatunjangan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                            <option  value="<?php echo e($datatunjangan->id); ?>" ><?php echo e($datatunjangan->kode_tunjangan); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                    </select>
-                                    <span class="help-block">
-                                        <?php echo e($errors->first('kode_tunjangan')); ?>
+							<div class="form-group">
+                        <?php echo Form::label('Kode Tunjangan', 'Kode Tunjangan:'); ?>
 
-                                    </span>
-                            </div>
+                        <select class="form-control" name="kode_tunjangan">
+                        <?php $__currentLoopData = $tunjangan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datatunjangan): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <option value='<?php echo $datatunjangan->id; ?>'><?php echo $datatunjangan->kode_tunjangan; ?>
 
-							<div class="col-md-6">
-                                <label for="Pegawai">Pegawai ID</label>
-                                    <select class="col-md-8 form-control" name="User">
-                                    <option>Pilih ID Baru</option>
-                                        <?php $__currentLoopData = $pegawai; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datapegawai): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                            <option  value="<?php echo e($datapegawai->id); ?>" ><?php echo e($datapegawai->User->name); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                    </select>
-                                    <span class="help-block">
-                                        <?php echo e($errors->first('User->name')); ?>
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                        </select>
+                    </div>
 
-                                    </span>
-                            </div>
+                     <div class="form-group">
+                        <?php echo Form::label('Pegawai', 'Pegaawai:'); ?>
+
+                        <select class="form-control" name="pegawai_id">
+                        <?php $__currentLoopData = $pegawai; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datapegawai): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <option value='<?php echo $datapegawai->id; ?>'><?php echo $datapegawai->User->name; ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                        </select>
+                    </div>
+
 					<div class="col-md-12"></div>
                     <div class="col-md-12">
                         <?php echo Form::submit('SAVE', ['class' => 'btn btn-primary form-control']); ?>
