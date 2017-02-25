@@ -22,6 +22,8 @@ use Auth;
 
 use App\penggajianModel;
 
+use User;
+
 
 
 class penggajianController extends Controller
@@ -42,7 +44,7 @@ class penggajianController extends Controller
 
     {
 
-        $this->middleware('Administrasi');
+        $this->middleware('Pegawai');
 
     }
 
@@ -154,7 +156,7 @@ class penggajianController extends Controller
 
             $gaji->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
 
-            $gaji->petugas_penerima = Auth::User()->name;
+            $gaji->petugas_penerimaan = Auth::User()->name;
 
             $gaji->save();
 
@@ -180,7 +182,7 @@ class penggajianController extends Controller
 
             $gaji->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
 
-            $gaji->petugas_penerima = Auth::User()->name;
+            $gaji->petugas_penerimaan = Auth::User()->name;
 
             $gaji->save();
 
@@ -190,13 +192,13 @@ class penggajianController extends Controller
 
         {
 
-            $gaji->jumlah_jam_lembur=$lembur_pegawai->jmlh_jam;
+            $gaji->jumlah_jam_lembur=$lembur_pegawai->jumlah_jam;
 
-            $gaji->jumlah_uang_lembur =($lembur_pegawai->jmlh_jam)*($kategori_lembur->besaran_uang);
+            $gaji->jumlah_uang_lembur =($lembur_pegawai->jumlah_jam)*($kategori_lembur->besaran_uang);
 
             $gaji->gaji_pokok=$jabatan->besaran_uang+$golongan->besaran_uang;
 
-            $gaji->total_gaji = ($lembur_pegawai->jmlh_jam*$kategori_lembur->besaran_uang)+($tunjangan->jumlah_anak*$tunjangan->besaran_uang)+($jabatan->besaran_uang+$golongan->besaran_uang);
+            $gaji->total_gaji = ($lembur_pegawai->jumlah_jam*$kategori_lembur->besaran_uang)+($tunjangan->jumlah_anak*$tunjangan->besaran_uang)+($jabatan->besaran_uang+$golongan->besaran_uang);
 
             $gaji->tanggal_pengambilan = date('d-m-y');
 
@@ -204,7 +206,7 @@ class penggajianController extends Controller
 
             $gaji->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
 
-            $gaji->petugas_penerima = Auth::user()->name;
+            $gaji->petugas_penerimaan = Auth::User()->name;
 
             $gaji->save();
 
